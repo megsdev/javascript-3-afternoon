@@ -9,6 +9,7 @@
 ////////// PROBLEM 1 //////////
 
 // Do not edit the code below.
+
 var employees = [
   {
     "firstName": "Von",
@@ -50,7 +51,18 @@ var employees = [
     3. Return the updated employee array.
 */
 
-//Code Here
+const employeeUpdater = () => {
+  for(i=employees.length - 1; i >= 0; i--) {
+    if(employees[i].firstName === 'Theo') {
+      employees.splice(i, 1);
+
+    }
+    if (employees[i].firstName === 'Lorie') {
+      employees[i].department = 'HR';
+    }
+  } return employees;
+}
+
 
 
 
@@ -68,8 +80,14 @@ var workplaceAccidents = [12, 56, 44, 3, 29, 56, 56, 3, 7, 12];
     3. Return the updated array.
 */
 
-//Code Here
-
+const removeDuplicates = (arr) => {
+   var updatedWorkplaceAccidents = [];
+   for (i=0; i<arr.length; i++) {
+     if(updatedWorkplaceAccidents.indexOf(arr[i]) === -1) {
+       updatedWorkplaceAccidents.push(arr[i]);
+     }
+   } return updatedWorkplaceAccidents;
+}
 
 
 ////////// PROBLEM 3 //////////
@@ -97,8 +115,8 @@ var cat = {
 */
 
 //Code Here
-var grumpyActivity;
-var fluffy2ndFriend;
+var grumpyActivity = cat.catFriends[0].activities[1];
+var fluffy2ndFriend = cat.catFriends[1].name;
 
 
 
@@ -138,15 +156,33 @@ var myCar = {
     3. Change atFaultForAccident from true to false.
 */
 
-//Code Here
+const recordCleaner = () => {
+  for (var i=0; i<myCar.accidents.length; i++) {
+    myCar.accidents[i].atFaultForAccident = false;
+  }
+}
 
+console.log(recordCleaner)
 
 
 ////////// PROBLEM 5 //////////
 
 // Do not edit the code below.
 var numsArr = [ [1, 2, 3, 4], [5, 6], [7, 8, 9, 10, 11]];
-// Do not edit the code above.
+
+
+const looper = () => {
+  for (var i=0; i<numsArr.length; i++) {
+    for (var j=0; j<numsArr[i].length; j++) {
+      if(numsArr[i][j] % 2 === 0) {
+        numsArr[i][j] = 'even'
+      } else {
+        numsArr[i][j] = 'odd'
+      }
+    }
+  }
+  return numsArr;
+}
 
 /*
   Above is an array of arrays. Use two for loops.
@@ -156,7 +192,3 @@ var numsArr = [ [1, 2, 3, 4], [5, 6], [7, 8, 9, 10, 11]];
         If the number is even, replace it with 'even'.
     4. Return the modified numsArr.
 */
-
-//Code Here
-
-

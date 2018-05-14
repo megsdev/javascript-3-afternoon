@@ -29,7 +29,18 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
+class Employee {
+  constructor (firstName, lastName, email, age) {
+    this.first_name = firstName;
+    this.last_name = lastName;
+    this.email = email;
+    this.age = age;
+  }
+
+  makeWidget () {
+    return this.first_name + ' ' + this.last_name + ' ' + 'Widget'
+  }
+}
 
 
 
@@ -49,8 +60,20 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager extends Employee {
+  constructor (firstName, lastName, email, age) {
+    super(firstName, lastName, email, age)
+    this.reports = []
+  }
 
+  hire (employee) {
+    this.reports.push(employee)
+  }
+
+  fire (index) {
+    this.reports.splice(index, 1)
+  }
+}
 
 
 ////////// PROBLEM 3 //////////
@@ -75,8 +98,39 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+class ProgressiveManager extends Manager {
+  constructor (firstName, lastName, email, age) {
+    super (firstName, lastName, email, age)
+    this.title = 'Not a manager'
+    this.bonus = 0
+    this.changeTitle = function (employees) {
+      if (employees > 100) {
+        this.title = 'Bestest Manager';
+      } else if (employees >= 51 && employees <= 100) {
+        this.title = 'Manager Plus';
+      } else if (employees >= 11 && employees <= 50) {
+        this.title = 'Manager';
+      } else if (employees >= 4 && employees <= 10) {
+        this.title = 'Mostly Manager';
+      } else if (employees >= 1 && employees<= 3) {
+        this.title = 'Barely Manager';
+      } else {
+        this.title = 'Not a manager';
+      }
+    }
+  }
 
+  hire (employee) {
+    this.reports.push(employee)
+    this.changeTitle(this.reports.length)
+  }
+
+  fire (index) {
+    this.reports.splice(index, 1)
+    this.bonus += 100;
+  }
+
+}
 
 
 ////////// PROBLEM 4 - Black Diamond //////////
@@ -102,6 +156,29 @@
         - It should set decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
 
-//Code Here
+class Machine {
+  constructor () {
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  
+  makeWidgets (num) {
+    this.wear_and_tear_count += Math.floor(num / 50);
+    this.widgets_made_count += num;
+  
+  }
 
+  fixMachine () {
+    this.needs_reboot = true;
+  }
+
+  reboot () {
+    var reference = this;
+    return function rebootComplete () {
+    reference.wear_and_tear_count -= 10;
+    reference.needs_reboot = false;
+    }
+  }
+}
 
